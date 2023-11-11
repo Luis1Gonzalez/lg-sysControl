@@ -134,7 +134,7 @@ export default function LayoutSerieControl() {
                     {filtered.numSerie}
                   </p>
                 </div>
-                <div className="flex flex-col items-end mb-3 bg-gray-200 p-3">
+                <div className="flex flex-col items-end mb-3 bg-gray-700 p-3">
                   <p className="text-xl font-semibold">Creada:</p>
                   <p>{filtered.day}</p>
                   <p>{filtered.hour}</p>

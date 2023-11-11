@@ -76,21 +76,30 @@ const ControlProvider = ({ children }) => {
 
 
 
-    useEffect(() => {
-        const obtainClave = async () => {
-            try {
-                const { data } = await axios('api/accessPasswords')
-                setClavex(data)
-                console.log(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        obtainClave()
-    }, [])
+//     useEffect(() => {
+//         const obtainClave = async () => {
+//             try {
+//                 const { data } = await axios('api/accessPasswords')
+//                 setClavex(data)
+//                 console.log(data)
+//             } catch (error) {
+//                 console.log(error)
+//             }
+//         }
+//         obtainClave()
+//     }, [])
 
-console.log(clavex)
-    const verifyAccess = () => {
+// console.log(clavex)
+    const verifyAccess = async () => {
+
+        try {
+            const { data } = await axios('api/accessPasswords')
+            setClavex(data)
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+
         const verifyPasswords = clavex.filter((vpass) => vpass.clave === password);
         if (verifyPasswords.length > 0) {
             setAccess(true)
