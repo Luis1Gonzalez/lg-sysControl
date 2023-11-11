@@ -71,36 +71,27 @@ const ControlProvider = ({ children }) => {
     const [punzonadoZona, setPunzonadoZona] = useState(false)
     const [pegamentoZona, setPegamentoZona] = useState(false)
 
-    const [clavex, setClavex] = useState([])
+    const [clave, setClave] = useState([])
     // ------------------------------------------------------------------------------
 
 
 
-//     useEffect(() => {
-//         const obtainClave = async () => {
-//             try {
-//                 const { data } = await axios('api/accessPasswords')
-//                 setClavex(data)
-//                 console.log(data)
-//             } catch (error) {
-//                 console.log(error)
-//             }
-//         }
-//         obtainClave()
-//     }, [])
-
-// console.log(clavex)
-    const verifyAccess = async () => {
-
-        try {
-            const { data } = await axios('api/accessPasswords')
-            setClavex(data)
-            console.log(data)
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+        const obtainClave = async () => {
+            try {
+                const { data } = await axios('api/accessPasswords')
+                setClave(data)
+                console.log(data)
+            } catch (error) {
+                console.log(error)
+            }
         }
+        obtainClave()
+    }, [])
 
-        const verifyPasswords = clavex.filter((vpass) => vpass.clave === password);
+console.log(clave)
+    const verifyAccess = () => {
+        const verifyPasswords = clave.filter((vpass) => vpass.clave === password);
         if (verifyPasswords.length > 0) {
             setAccess(true)
             router.push('/lobby')
