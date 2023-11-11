@@ -16,23 +16,6 @@ export default function LayoutSerieControl() {
     setFinder,
     editSerieControl,
     identifierDeleteSereieControl,
-    // previewChangeSerie,
-    // guillotina,
-    // devanado,
-    // punzonado,
-    // marcos,
-    // plegado,
-    // pladur,
-    // rockbulk,
-    // pegamento,
-    // guillotinaZona,
-    //             devanadoZona,
-    //             marcosZona,
-    //             plegadoZona,
-    //             pladurZona,
-    //             rockbulkZona,
-    //             punzonadoZona,
-    //             pegamentoZona
   } = useControl();
 
   const backMain = () => {
@@ -142,8 +125,14 @@ if(!filterSerieControl[0]) {
                   <p className="text-indigo-400 font-semibold text-4xl md:text-5xl w-2/4 text-star">
                     {filtered.numSerie}
                   </p>
-                </div>
 
+                  
+                </div>
+<div className="flex flex-col items-end mb-3">
+  <p className="text-xl font-semibold">Creada:</p>
+<p>{filtered.day}</p>
+<p>{filtered.hour}</p>
+</div>
                 {/* ------------------------------Client---------------------- */}
                 <div className="mb-5 flex justify-around items-center border rounded-md border-black border-2xl p-2">
                   <label

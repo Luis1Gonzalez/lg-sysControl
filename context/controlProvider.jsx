@@ -81,12 +81,14 @@ const ControlProvider = ({ children }) => {
             try {
                 const { data } = await axios('api/accessPasswords')
                 setClave(data)
+                console.log(data)
             } catch (error) {
                 console.log(error)
             }
         }
         obtainClave()
     }, [])
+
 console.log(clave)
     const verifyAccess = () => {
         const verifyPasswords = clave?.filter((vpass) => vpass.clave === password);
@@ -206,17 +208,17 @@ console.log(clave)
         searchingClient()
     }, [byClient, datosSeries])
 
-    useEffect(() => {
-        const creationDay = setInterval(() => {
+    // useEffect(() => {
+    //     const creationDay = setInterval(() => {
 
-            const dateToday = new Date();
-            const currentTime = dateToday.toLocaleTimeString()
-            const currentDate = dateToday.toLocaleDateString()
-            setHour(currentTime)
-            setDay(currentDate)
-        }, 1000)
-        return () => clearTimeout(creationDay);
-    }, [])
+    //         const dateToday = new Date();
+    //         const currentTime = dateToday.toLocaleTimeString()
+    //         const currentDate = dateToday.toLocaleDateString()
+    //         setHour(currentTime)
+    //         setDay(currentDate)
+    //     }, 1000)
+    //     return () => clearTimeout(creationDay);
+    // }, [datosSeries])
 
     const newSerie = async (e) => {
         e.preventDefault()
