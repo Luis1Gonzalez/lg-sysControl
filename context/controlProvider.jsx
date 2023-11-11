@@ -71,7 +71,7 @@ const ControlProvider = ({ children }) => {
     const [punzonadoZona, setPunzonadoZona] = useState(false)
     const [pegamentoZona, setPegamentoZona] = useState(false)
 
-    const [clave, setClave] = useState([])
+    const [clavex, setClavex] = useState([])
     // ------------------------------------------------------------------------------
 
 
@@ -80,7 +80,7 @@ const ControlProvider = ({ children }) => {
         const obtainClave = async () => {
             try {
                 const { data } = await axios('api/accessPasswords')
-                setClave(data)
+                setClavex(data)
                 console.log(data)
             } catch (error) {
                 console.log(error)
@@ -89,9 +89,9 @@ const ControlProvider = ({ children }) => {
         obtainClave()
     }, [])
 
-console.log(clave)
+console.log(clavex)
     const verifyAccess = () => {
-        const verifyPasswords = clave?.filter((vpass) => vpass.clave === password);
+        const verifyPasswords = clavex.filter((vpass) => vpass.clave === password);
         if (verifyPasswords.length > 0) {
             setAccess(true)
             router.push('/lobby')

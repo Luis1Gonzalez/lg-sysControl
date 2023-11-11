@@ -23,15 +23,14 @@ export default function LayoutSerieControl() {
     setClosed(false);
     setFinder(true);
   };
-const idFilterSerieControlId = filterSerieControl[0]?.id
+  const idFilterSerieControlId = filterSerieControl[0]?.id;
 
-useEffect(() => {
-  const array = [JSON.parse(localStorage.getItem('serie'))]
-if(!filterSerieControl[0]) {
-  setFilterSerieControl(array)
-}
-},[])
-
+  useEffect(() => {
+    const array = [JSON.parse(localStorage.getItem("serie"))];
+    if (!filterSerieControl[0]) {
+      setFilterSerieControl(array);
+    }
+  }, []);
 
   return (
     <>
@@ -39,7 +38,7 @@ if(!filterSerieControl[0]) {
         <title>SysControl - Admin</title>
         <meta name="description" content="Sistema de control de producción" />
       </Head>
-      
+
       {filterSerieControl ? (
         <div className=" flex flex-col min-w-[320px] w-[100%] min-h-screen items-center bg-gray-200 p-3">
           <div className="flex w-scrren justify-center mb-7 mt-16">
@@ -51,10 +50,12 @@ if(!filterSerieControl[0]) {
             </h1>
           </div>
 
-          <div className="flex justify-evenly w-[100%] items-center">            
+          <div className="flex justify-evenly w-[100%] items-center">
             <Link
-            className="hover:bg-gray-400 rounded-full w-12 h-12 flex justify-center items-center"
-            href={"/series"} onClick={backMain}>
+              className="hover:bg-gray-400 rounded-full w-12 h-12 flex justify-center items-center"
+              href={"/series"}
+              onClick={backMain}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -72,8 +73,9 @@ if(!filterSerieControl[0]) {
             </Link>
 
             <div
-            className="hover:bg-gray-400 rounded-full w-12 h-12 flex justify-center items-center"
-            onClick={() => editSerieControl(filterSerieControl[0].id)}>
+              className="hover:bg-gray-400 rounded-full w-12 h-12 flex justify-center items-center"
+              onClick={() => editSerieControl(filterSerieControl[0].id)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -91,8 +93,14 @@ if(!filterSerieControl[0]) {
             </div>
 
             <div
-            className="hover:bg-gray-400 rounded-full w-12 h-12 flex justify-center items-center"
-            onClick={() => identifierDeleteSereieControl(filterSerieControl, idFilterSerieControlId)}>
+              className="hover:bg-gray-400 rounded-full w-12 h-12 flex justify-center items-center"
+              onClick={() =>
+                identifierDeleteSereieControl(
+                  filterSerieControl,
+                  idFilterSerieControlId
+                )
+              }
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -125,14 +133,12 @@ if(!filterSerieControl[0]) {
                   <p className="text-indigo-400 font-semibold text-4xl md:text-5xl w-2/4 text-star">
                     {filtered.numSerie}
                   </p>
-
-                  
                 </div>
-<div className="flex flex-col items-end mb-3">
-  <p className="text-xl font-semibold">Creada:</p>
-<p>{filtered.day}</p>
-<p>{filtered.hour}</p>
-</div>
+                <div className="flex flex-col items-end mb-3 bg-gray-200 p-3">
+                  <p className="text-xl font-semibold">Creada:</p>
+                  <p>{filtered.day}</p>
+                  <p>{filtered.hour}</p>
+                </div>
                 {/* ------------------------------Client---------------------- */}
                 <div className="mb-5 flex justify-around items-center border rounded-md border-black border-2xl p-2">
                   <label
@@ -191,75 +197,123 @@ if(!filterSerieControl[0]) {
 
                 {/* ------------------------------Others---------------------- */}
                 <div className=" flex flex-col sm:flex-row flex-wrap sm:justify-evenly">
-                  <div className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${filtered.guillotina === false ? "hidden" : "block"}`}>
+                  <div
+                    className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${
+                      filtered.guillotina === false ? "hidden" : "block"
+                    }`}
+                  >
                     <label className="text-gay-700 font-semibold text-2xl md:text-3xl">
                       Guillotina
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                    {filterSerieControl[0].guillotina === false ? "Listo" : "Pendiente"}
+                      {filterSerieControl[0].guillotina === false
+                        ? "Listo"
+                        : "Pendiente"}
                     </p>
                   </div>
 
-                  <div className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${filtered.devanado === false ? "hidden" : "block"}`}>
+                  <div
+                    className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${
+                      filtered.devanado === false ? "hidden" : "block"
+                    }`}
+                  >
                     <label className="text-gay-700 font-semibold text-2xl md:text-3xl">
                       Devanado
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                    {filterSerieControl[0].devanado === false ? "Listo" : "Pendiente"}
+                      {filterSerieControl[0].devanado === false
+                        ? "Listo"
+                        : "Pendiente"}
                     </p>
                   </div>
 
-                  <div className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${filtered.punzonado === false ? "hidden" : "block"}`}>
+                  <div
+                    className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${
+                      filtered.punzonado === false ? "hidden" : "block"
+                    }`}
+                  >
                     <label className="text-gay-700 font-semibold text-2xl md:text-3xl">
                       Punzonado
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                    {filterSerieControl[0].punzonado === false ? "Listo" : "Pendiente"}
+                      {filterSerieControl[0].punzonado === false
+                        ? "Listo"
+                        : "Pendiente"}
                     </p>
                   </div>
 
-                  <div className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${filtered.marcos === false ? "hidden" : "block"}`}>
+                  <div
+                    className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${
+                      filtered.marcos === false ? "hidden" : "block"
+                    }`}
+                  >
                     <label className="text-gay-700 font-semibold text-2xl md:text-3xl">
                       Marcos
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                    {filterSerieControl[0].marcos === false ? "Listo" : "Pendiente"}
+                      {filterSerieControl[0].marcos === false
+                        ? "Listo"
+                        : "Pendiente"}
                     </p>
                   </div>
 
-                  <div className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${filtered.plegado === false ? "hidden" : "block"}`}>
+                  <div
+                    className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${
+                      filtered.plegado === false ? "hidden" : "block"
+                    }`}
+                  >
                     <label className="text-gay-700 font-semibold text-2xl md:text-3xl">
                       Hojas
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                    {filterSerieControl[0].plegado === false ? "Listo" : "Pendiente"}
+                      {filterSerieControl[0].plegado === false
+                        ? "Listo"
+                        : "Pendiente"}
                     </p>
                   </div>
 
-                  <div className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${filtered.pladur === false ? "hidden" : "block"}`}>
+                  <div
+                    className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${
+                      filtered.pladur === false ? "hidden" : "block"
+                    }`}
+                  >
                     <label className="text-gay-700 font-semibold text-2xl md:text-3xl">
                       Pladur
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                    {filterSerieControl[0].pladur === false ? "Listo" : "Pendiente"}
+                      {filterSerieControl[0].pladur === false
+                        ? "Listo"
+                        : "Pendiente"}
                     </p>
                   </div>
 
-                  <div className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${filtered.rockbulk === false ? "hidden" : "block"}`}>
+                  <div
+                    className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${
+                      filtered.rockbulk === false ? "hidden" : "block"
+                    }`}
+                  >
                     <label className="text-gay-700 font-semibold text-2xl md:text-3xl">
                       Rockbulk
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                    {filterSerieControl[0].rockbulk === false ? "Listo" : "Pendiente"}
+                      {filterSerieControl[0].rockbulk === false
+                        ? "Listo"
+                        : "Pendiente"}
                     </p>
                   </div>
 
-                  <div className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${filtered.pegamento === false ? "hidden" : "block"}`}>
+                  <div
+                    className={`mb-5 flex flex-col items-center sm:w-[40%] md:w-[30%] ${
+                      filtered.pegamento === false ? "hidden" : "block"
+                    }`}
+                  >
                     <label className="text-gay-700 font-semibold text-2xl md:text-3xl">
                       Pegamento
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                    {filterSerieControl[0].pegamento === false ? "Listo" : "Pendiente"}
+                      {filterSerieControl[0].pegamento === false
+                        ? "Listo"
+                        : "Pendiente"}
                     </p>
                   </div>
                 </div>
@@ -275,8 +329,8 @@ if(!filterSerieControl[0]) {
         "Esta Serie No Exite"
       )}
       <AlertCerrarSerieZona
-      msg={`Estas seguro de eliminar la Serie:`}
-      msg2={`Cliente:`}
+        msg={`Estas seguro de eliminar la Serie:`}
+        msg2={`Cliente:`}
       />
     </>
   );
