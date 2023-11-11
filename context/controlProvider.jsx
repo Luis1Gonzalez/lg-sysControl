@@ -71,7 +71,7 @@ const ControlProvider = ({ children }) => {
     const [punzonadoZona, setPunzonadoZona] = useState(false)
     const [pegamentoZona, setPegamentoZona] = useState(false)
 
-    const [clave, setClave] = useState('')
+    const [clave, setClave] = useState([])
     // ------------------------------------------------------------------------------
 
 
