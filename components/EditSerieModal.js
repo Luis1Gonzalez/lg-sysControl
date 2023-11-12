@@ -37,7 +37,8 @@ export default function EditSerieModal({ setModalEditSerie, modalEditSerie }) {
         editingSerie,
         setIdSerieControl
       } = useControl();
-    const showSerieActual = editingSerie.numSerie
+    const showSerieActual = editingSerie.numSerie;
+    const showClientActual = editingSerie.client;
     
     const handleGuillotina = () => {
         setGuillotina(!guillotina);
@@ -172,16 +173,9 @@ useEffect(() => {
                         Cliente
                       </label>
 
-                      <input
-                        type="text"
-                        id="client"
-                        onChange={(e) => setClient(e.target.value)}
-                        value={client}
-                        pattern="[A-Z][a-z]+"
-                        placeholder="ej.: Cimesa"
-                        title="El primer carácter debe ser una letra en mayuscula."
-                        className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                      />
+                      <p className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md font-semibold">
+                      {showClientActual}
+                      </p>
                     </div>
 
                     {/* ------------------------------Other---------------------- */}

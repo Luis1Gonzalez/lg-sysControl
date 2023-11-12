@@ -191,17 +191,17 @@ const ControlProvider = ({ children }) => {
         searchingClient()
     }, [byClient, datosSeries])
 
-    // useEffect(() => {
-    //     const creationDay = setInterval(() => {
+    useEffect(() => {
+        const creationDay = setInterval(() => {
 
-    //         const dateToday = new Date();
-    //         const currentTime = dateToday.toLocaleTimeString()
-    //         const currentDate = dateToday.toLocaleDateString()
-    //         setHour(currentTime)
-    //         setDay(currentDate)
-    //     }, 1000)
-    //     return () => clearTimeout(creationDay);
-    // }, [datosSeries])
+            const dateToday = new Date();
+            const currentTime = dateToday.toLocaleTimeString()
+            const currentDate = dateToday.toLocaleDateString()
+            setHour(currentTime)
+            setDay(currentDate)
+        }, 1000)
+        return () => clearTimeout(creationDay);
+    }, [datosSeries])
 
     const newSerie = async (e) => {
         e.preventDefault()
