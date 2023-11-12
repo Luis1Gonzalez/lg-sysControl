@@ -16,7 +16,7 @@ const { setPassword, verifyAccess, alert, msg, } = useControl()
       </label>
       <input
         type="password"
-        className="text-gray-400 rounded-md h-[30px] w-[90%] my-1 md:my-2 p-6"
+        className="text-gray-400 rounded-md h-[30px] w-[90%] my-3 md:my-2 p-6"
         onChange={e => setPassword(e.target.value)}
         autoComplete="off"
       />

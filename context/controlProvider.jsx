@@ -2,7 +2,8 @@ import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { PrismaClient } from "@prisma/client";
-import { NextResponse } from "next/server";
+import datosClaves from "../data/datos";
+
 
 
 const ControlContext = createContext()
@@ -38,60 +39,42 @@ const ControlProvider = ({ children }) => {
     const [client, setClient] = useState("");
     const [status, setStatus] = useState("Abierta");
     const [comment, setComment] = useState("");
-    const [guillotina, setGuillotina] = useState(false)
-    const [devanado, setDevanado] = useState(false)
-    const [marcos, setMarcos] = useState(false)
-    const [plegado, setPlegado] = useState(false)
-    const [pladur, setPladur] = useState(false)
-    const [rockbulk, setRockbulk] = useState(false)
-    const [punzonado, setPunzonado] = useState(false)
-    const [pegamento, setPegamento] = useState(false)
+    const [guillotina, setGuillotina] = useState(false);
+    const [devanado, setDevanado] = useState(false);
+    const [marcos, setMarcos] = useState(false);
+    const [plegado, setPlegado] = useState(false);
+    const [pladur, setPladur] = useState(false);
+    const [rockbulk, setRockbulk] = useState(false);
+    const [punzonado, setPunzonado] = useState(false);
+    const [pegamento, setPegamento] = useState(false);
     const [priority, setPriority] = useState("");
 
-    const [editingSerie, setEditingSerie] = useState('')
-    const [modalEditSerie, setModalEditSerie] = useState(false)
+    const [editingSerie, setEditingSerie] = useState('');
+    const [modalEditSerie, setModalEditSerie] = useState(false);
     const [data, setData] = useState(null);
-    const [idSerieControl, setIdSerieControl] = useState(null)
+    const [idSerieControl, setIdSerieControl] = useState(null);
 
-    const [modalAlertDeleteSerie, setModalAlertDeleteSerie] = useState(false)
-    const [previewDeletingSerie, setPreviewDeletingSerie] = useState({})
+    const [modalAlertDeleteSerie, setModalAlertDeleteSerie] = useState(false);
+    const [previewDeletingSerie, setPreviewDeletingSerie] = useState({});
 
     const [seleArea, setSeleArea] = useState("");
     const [selectionShowSerie, setSelectionShowSerie] = useState([]);
     const [upSelectionShowSerie, setUpSelectionShowSerie] = useState([]);
     const [previewChangeId, setPreviewChangeId] = useState(null);
-    const [modalAlert, setModalAlert] = useState(false)
-    const [previewChangeSerie, setPreviewChangeSerie] = useState({})
-    const [guillotinaZona, setGuillotinaZona] = useState(false)
-    const [devanadoZona, setDevanadoZona] = useState(false)
-    const [marcosZona, setMarcosZona] = useState(false)
-    const [plegadoZona, setPlegadoZona] = useState(false)
-    const [pladurZona, setPladurZona] = useState(false)
-    const [rockbulkZona, setRockbulkZona] = useState(false)
-    const [punzonadoZona, setPunzonadoZona] = useState(false)
-    const [pegamentoZona, setPegamentoZona] = useState(false)
-
-    const [clave, setClave] = useState([])
+    const [modalAlert, setModalAlert] = useState(false);
+    const [previewChangeSerie, setPreviewChangeSerie] = useState({});
+    const [guillotinaZona, setGuillotinaZona] = useState(false);
+    const [devanadoZona, setDevanadoZona] = useState(false);
+    const [marcosZona, setMarcosZona] = useState(false);
+    const [plegadoZona, setPlegadoZona] = useState(false);
+    const [pladurZona, setPladurZona] = useState(false);
+    const [rockbulkZona, setRockbulkZona] = useState(false);
+    const [punzonadoZona, setPunzonadoZona] = useState(false);
+    const [pegamentoZona, setPegamentoZona] = useState(false);
     // ------------------------------------------------------------------------------
 
-
-
-    useEffect(() => {
-        const obtainClave = async () => {
-            try {
-                const { data } = await axios('api/accessPasswords')
-                setClave(data)
-                console.log(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        obtainClave()
-    }, [])
-
-console.log(clave)
     const verifyAccess = () => {
-        const verifyPasswords = clave.filter((vpass) => vpass.clave === password);
+        const verifyPasswords = datosClaves.filter((vpass) => vpass.clave === password);
         if (verifyPasswords.length > 0) {
             setAccess(true)
             router.push('/lobby')
