@@ -11,25 +11,33 @@ datasource db {
 }
 
 model Serie {
-  id         Int     @id @default(autoincrement())
-  numSerie   String
-  guillotina Boolean
-  devanado   Boolean
-  punzonado  Boolean
-  marcos     Boolean
-  pladur     Boolean
-  rockbulk   Boolean
-  plegado    Boolean
-  pegamento  Boolean
-  status     String
-  client     String
-  day        String
-  hour       String
-  comment    String
-  priority   String
+  id               Int     @id @default(autoincrement())
+  numSerie         String
+  guillotina       Boolean
+  devanado         Boolean
+  punzonado        Boolean
+  marcos           Boolean
+  pladur           Boolean
+  rockbulk         Boolean
+  plegado          Boolean
+  pegamento        Boolean
+  statusGuillotina Boolean
+  statusDevanado   Boolean
+  statusPunzonado  Boolean
+  statusMarcos     Boolean
+  statusPladur     Boolean
+  statusRockbulk   Boolean
+  statusPlegado    Boolean
+  statusPegamento  Boolean
+  status           String
+  client           String
+  day              String
+  hour             String
+  comment          String
+  priority         String
 }
 
 model AccessPassword {
-  id         Int     @id @default(autoincrement())
-  clave      String
+  id    Int    @id @default(autoincrement())
+  clave String
 }

@@ -63,14 +63,19 @@ const ControlProvider = ({ children }) => {
     const [previewChangeId, setPreviewChangeId] = useState(null);
     const [modalAlert, setModalAlert] = useState(false);
     const [previewChangeSerie, setPreviewChangeSerie] = useState({});
-    const [guillotinaZona, setGuillotinaZona] = useState(false);
-    const [devanadoZona, setDevanadoZona] = useState(false);
-    const [marcosZona, setMarcosZona] = useState(false);
-    const [plegadoZona, setPlegadoZona] = useState(false);
-    const [pladurZona, setPladurZona] = useState(false);
-    const [rockbulkZona, setRockbulkZona] = useState(false);
-    const [punzonadoZona, setPunzonadoZona] = useState(false);
-    const [pegamentoZona, setPegamentoZona] = useState(false);
+
+    const [statusGuillotina, setStatusGuillotina] = useState(false);
+    const [statusDevanado, setStatusDevanado] = useState(false);
+    const [statusPunzonado, setStatusPunzonado] = useState(false);
+    const [statusMarcos, setStatusMarcos] = useState(false);
+    const [statusPladur, setStatusPladur] = useState(false);
+    const [statusRockbulk, setStatusRockbulk] = useState(false);
+    const [statusPlegado, setStatusPlegado] = useState(false);
+    const [statusPegamento, setStatusPegamento] = useState(false);
+
+
+
+
     // ------------------------------------------------------------------------------
 
     const verifyAccess = () => {
@@ -191,17 +196,14 @@ const ControlProvider = ({ children }) => {
         searchingClient()
     }, [byClient, datosSeries])
 
-    useEffect(() => {
-        const creationDay = setInterval(() => {
 
-            const dateToday = new Date();
-            const currentTime = dateToday.toLocaleTimeString()
-            const currentDate = dateToday.toLocaleDateString()
-            setHour(currentTime)
-            setDay(currentDate)
-        }, 1000)
-        return () => clearTimeout(creationDay);
-    }, [datosSeries])
+const obtainTime = () => {
+    const dateToday = new Date();
+    const currentTime = dateToday.toLocaleTimeString()
+    const currentDate = dateToday.toLocaleDateString()
+    setHour(currentTime)
+    setDay(currentDate)
+}
 
     const newSerie = async (e) => {
         e.preventDefault()
@@ -218,7 +220,34 @@ const ControlProvider = ({ children }) => {
 
 
             try {
-                const { data } = await axios.post('/api/series', { numSerie, day, hour, client, status, comment, guillotina, devanado, marcos, plegado, pladur, rockbulk, punzonado, pegamento, priority })
+
+                const { data } = await axios.post('/api/series',
+                    {
+                        numSerie,
+                        day,
+                        hour,
+                        client,
+                        status,
+                        comment,
+                        guillotina,
+                        devanado,
+                        marcos,
+                        plegado,
+                        pladur,
+                        rockbulk,
+                        punzonado,
+                        pegamento,
+                        priority,
+                        statusGuillotina,
+                        statusDevanado,
+                        statusMarcos,
+                        statusPlegado,
+                        statusPladur,
+                        statusRockbulk,
+                        statusPunzonado,
+                        statusPegamento,
+
+                    })
                 setDatosSeries([...datosSeries, data])
 
             } catch (error) {
@@ -271,7 +300,7 @@ const ControlProvider = ({ children }) => {
     const editSerie = async (e) => {
         e.preventDefault()
 
-        if ([client, priority, status].includes('')) {
+        if ([priority, status].includes('')) {
             setAlert(true)
             setMsg("Los Campos Cliente, Status y Prioridad son Obligatorios al realizar una modificación")
 
@@ -362,78 +391,113 @@ const ControlProvider = ({ children }) => {
         setModalAlert(true)
     }
 
-    const takingIdStatusArea = async (id) => {
+    const takingIdStatusArea = (id) => {
         setPreviewChangeId(id)
+
+        if (seleArea === "guillotina") {
+            if (previewChangeSerie?.statusGuillotina === false) {
+                setStatusGuillotina(true)
+            } else {
+                setStatusGuillotina(true)
+            }
+        } else if (seleArea === "devanado") {
+            if (previewChangeSerie?.statusDevanado === false) {
+                setStatusDevanado(true)
+            } else {
+                setStatusDevanado(true)
+            }
+        } else if (seleArea === "punzonado") {
+            if (previewChangeSerie?.statusPunzonado === false) {
+                setStatusPunzonado(true)
+            } else {
+                setStatusPunzonado(true)
+            }
+        } else if (seleArea === "marcos") {
+            if (previewChangeSerie?.statusMarcos === false) {
+                setStatusMarcos(true)
+            } else {
+                setStatusMarcos(true)
+            }
+        } else if (seleArea === "plegado") {
+            if (previewChangeSerie?.statusPlegado === false) {
+                setStatusPlegado(true)
+            } else {
+                setStatusPlegado(true)
+            }
+        } else if (seleArea === "pladur") {
+            if (previewChangeSerie?.statusPladur === false) {
+                setStatusPladur(true)
+            } else {
+                setStatusPladur(true)
+            }
+        } else if (seleArea === "rockbulk") {
+            if (previewChangeSerie?.statusRockbulk === false) {
+                setStatusRockbulk(true)
+            } else {
+                setStatusRockbulk(true)
+            }
+        } else {
+            if (previewChangeSerie?.statusPegamento === false) {
+                setStatusPegamento(true)
+            } else {
+                setStatusPegamento(true)
+            }
+        }
+
     }
 
 
-
     useEffect(() => {
-        if (previewChangeSerie.guillotina === true && seleArea === "guillotina") {
-            setGuillotinaZona(false)
-        } else if (previewChangeSerie.guillotina !== true || seleArea !== "guillotina") {
-            setGuillotinaZona(previewChangeSerie.guillotina)
+        if (seleArea === "guillotina") {
+            if (previewChangeSerie?.statusGuillotina === false) {
+                setStatusGuillotina(true)
+            } else {
+                setStatusGuillotina(true)
+            }
+        } else if (seleArea === "devanado") {
+            if (previewChangeSerie?.statusDevanado === false) {
+                setStatusDevanado(true)
+            } else {
+                setStatusDevanado(true)
+            }
+        } else if (seleArea === "punzonado") {
+            if (previewChangeSerie?.statusPunzonado === false) {
+                setStatusPunzonado(true)
+            } else {
+                setStatusPunzonado(true)
+            }
+        } else if (seleArea === "marcos") {
+            if (previewChangeSerie?.statusMarcos === false) {
+                setStatusMarcos(true)
+            } else {
+                setStatusMarcos(true)
+            }
+        } else if (seleArea === "plegado") {
+            if (previewChangeSerie?.statusPlegado === false) {
+                setStatusPlegado(true)
+            } else {
+                setStatusPlegado(true)
+            }
+        } else if (seleArea === "pladur") {
+            if (previewChangeSerie?.statusPladur === false) {
+                setStatusPladur(true)
+            } else {
+                setStatusPladur(true)
+            }
+        } else if (seleArea === "rockbulk") {
+            if (previewChangeSerie?.statusRockbulk === false) {
+                setStatusRockbulk(true)
+            } else {
+                setStatusRockbulk(true)
+            }
         } else {
-            setGuillotinaZona(false)
-        }
-
-        if (previewChangeSerie.devanado === true && seleArea === "devanado") {
-            setDevanadoZona(false)
-        } else if (previewChangeSerie.devanado !== true || seleArea !== "devanado") {
-            setDevanadoZona(previewChangeSerie.devanado)
-        } else {
-            setDevanadoZona(false)
-        }
-
-        if (previewChangeSerie.punzonado === true && seleArea === "punzonado") {
-            setPunzonadoZona(false)
-        } else if (previewChangeSerie.punzonado !== true || seleArea !== "punzonado") {
-            setPunzonadoZona(previewChangeSerie.punzonado)
-        } else {
-            setPunzonadoZona(false)
-        }
-
-        if (previewChangeSerie.marcos === true && seleArea === "marcos") {
-            setMarcosZona(false)
-        } else if (previewChangeSerie.marcos !== true || seleArea !== "marcos") {
-            setMarcosZona(previewChangeSerie.marcos)
-        } else {
-            setMarcosZona(false)
-        }
-
-        if (previewChangeSerie.plegado === true && seleArea === "plegado") {
-            setPlegadoZona(false)
-        } else if (previewChangeSerie.plegado !== true || seleArea !== "plegado") {
-            setPlegadoZona(previewChangeSerie.plegado)
-        } else {
-            setPlegadoZona(false)
-        }
-
-        if (previewChangeSerie.pladur === true && seleArea === "pladur") {
-            setPladurZona(false)
-        } else if (previewChangeSerie.pladur !== true || seleArea !== "pladur") {
-            setPladurZona(previewChangeSerie.pladur)
-        } else {
-            setPladurZona(false)
-        }
-
-        if (previewChangeSerie.rockbulk === true && seleArea === "rockbulk") {
-            setRockbulkZona(false)
-        } else if (previewChangeSerie.rockbulk !== true || seleArea !== "rockbulk") {
-            setRockbulkZona(previewChangeSerie.rockbulk)
-        } else {
-            setRockbulkZona(false)
-        }
-
-        if (previewChangeSerie.pegamento === true && seleArea === "pegamento") {
-            setPegamentoZona(false)
-        } else if (previewChangeSerie.pegamento !== true || seleArea !== "pegamento") {
-            setPegamentoZona(previewChangeSerie.pegamento)
-        } else {
-            setPegamentoZona(false)
+            if (previewChangeSerie?.statusPegamento === false) {
+                setStatusPegamento(true)
+            } else {
+                setStatusPegamento(true)
+            }
         }
     }, [previewChangeSerie])
-
 
     const changingStatusArea = async () => {
 
@@ -446,15 +510,14 @@ const ControlProvider = ({ children }) => {
                 id: previewChangeId,
                 day: day,
                 hour: hour,
-                guillotina: guillotinaZona,
-                devanado: devanadoZona,
-                marcos: marcosZona,
-                pegamento: pegamentoZona,
-                plegado: plegadoZona,
-                pladur: pladurZona,
-                rockbulk: rockbulkZona,
-                punzonado: punzonadoZona,
-                pegamento: pegamentoZona,
+                statusGuillotina: statusGuillotina,
+                statusDevanado: statusDevanado,
+                statusPunzonado: statusPunzonado,
+                statusMarcos: statusMarcos,
+                statusPlegado: statusPlegado,
+                statusPladur: statusPladur,
+                statusRockbulk: statusRockbulk,
+                statusPegamento: statusPegamento,
             })
         })
         const updatedData = await response.json();
@@ -502,6 +565,14 @@ const ControlProvider = ({ children }) => {
                 rockbulk, setRockbulk,
                 punzonado, setPunzonado,
                 pegamento, setPegamento,
+                statusGuillotina, setStatusGuillotina,
+                statusDevanado, setStatusDevanado,
+                statusPunzonado, setStatusPunzonado,
+                statusMarcos, setStatusMarcos,
+                statusPlegado, setStatusPlegado,
+                statusPladur, setStatusPladur,
+                statusRockbulk, setStatusRockbulk,
+                statusPegamento, setStatusPegamento,
                 setPriority, priority,
                 newSerie,
                 alert,
@@ -530,17 +601,9 @@ const ControlProvider = ({ children }) => {
                 previewDeletingSerie,
                 dataSeries,
                 setDataSeries,
-                guillotinaZona,
-                devanadoZona,
-                marcosZona,
-                plegadoZona,
-                pladurZona,
-                rockbulkZona,
-                punzonadoZona,
-                pegamentoZona,
                 preChangingSerie,
-                upSelectionShowSerie
-
+                upSelectionShowSerie,
+                obtainTime
             }}
         >
             {children}

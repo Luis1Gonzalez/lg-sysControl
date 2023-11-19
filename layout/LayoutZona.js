@@ -26,56 +26,56 @@ export default function LayoutZona() {
     switch (seleArea) {
       case "guillotina":
         const showGuillotina = datosSeries.filter(
-          (show) => show.guillotina === true && show.status === "Abierta"
+          (show) => show.statusGuillotina === false && show.status === "Abierta"
         );
         setSelectionShowSerie(showGuillotina);
         break;
 
       case "devanado":
         const showDevanado = datosSeries.filter(
-          (show) => show.devanado === true && show.status === "Abierta"
+          (show) => show.statusDevanado === false && show.status === "Abierta"
         );
         setSelectionShowSerie(showDevanado);
         break;
 
       case "punzonado":
         const showPunzonado = datosSeries.filter(
-          (show) => show.punzonado === true && show.status === "Abierta"
+          (show) => show.statusPunzonado === false && show.status === "Abierta"
         );
         setSelectionShowSerie(showPunzonado);
         break;
 
       case "marcos":
         const showMarcos = datosSeries.filter(
-          (show) => show.marcos === true && show.status === "Abierta"
+          (show) => show.statusMarcos === false && show.status === "Abierta"
         );
         setSelectionShowSerie(showMarcos);
         break;
 
       case "plegado":
         const showPlegado = datosSeries.filter(
-          (show) => show.plegado === true && show.status === "Abierta"
+          (show) => show.statusPlegado === false && show.status === "Abierta"
         );
         setSelectionShowSerie(showPlegado);
         break;
 
       case "pladur":
         const showPladur = datosSeries.filter(
-          (show) => show.pladur === true && show.status === "Abierta"
+          (show) => show.statusPladur === false && show.status === "Abierta"
         );
         setSelectionShowSerie(showPladur);
         break;
 
       case "rockbulk":
         const showRockbulk = datosSeries.filter(
-          (show) => show.rockbulk === true && show.status === "Abierta"
+          (show) => show.statusRockbulk === false && show.status === "Abierta"
         );
         setSelectionShowSerie(showRockbulk);
         break;
 
       case "pegamento":
         const showPegamento = datosSeries.filter(
-          (show) => show.pegamento === true && show.status === "Abierta"
+          (show) => show.statusPegamento === false && show.status === "Abierta"
         );
         setSelectionShowSerie(showPegamento);
         break;

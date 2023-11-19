@@ -16,6 +16,15 @@ export default function LayoutSerieControl() {
     setFinder,
     editSerieControl,
     identifierDeleteSereieControl,
+    guillotinaZona,
+    statusGuillotina,
+    statusDevanado,
+    statusPunzonado,
+    statusMarcos,                
+    statusPlegado,
+    statusPladur,
+    statusRockbulk,
+    statusPegamento,
   } = useControl();
 
   const backMain = () => {
@@ -206,7 +215,7 @@ export default function LayoutSerieControl() {
                       Guillotina
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                      {filterSerieControl[0].guillotina === false
+                      {filterSerieControl[0]?.statusGuillotina === true
                         ? "Listo"
                         : "Pendiente"}
                     </p>
@@ -221,7 +230,7 @@ export default function LayoutSerieControl() {
                       Devanado
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                      {filterSerieControl[0].devanado === false
+                      {filterSerieControl[0]?.statusDevanado === true
                         ? "Listo"
                         : "Pendiente"}
                     </p>
@@ -236,7 +245,7 @@ export default function LayoutSerieControl() {
                       Punzonado
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                      {filterSerieControl[0].punzonado === false
+                      {filterSerieControl[0]?.statusPunzonado === true
                         ? "Listo"
                         : "Pendiente"}
                     </p>
@@ -251,7 +260,7 @@ export default function LayoutSerieControl() {
                       Marcos
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                      {filterSerieControl[0].marcos === false
+                      {filterSerieControl[0]?.statusMarcos === true
                         ? "Listo"
                         : "Pendiente"}
                     </p>
@@ -266,7 +275,7 @@ export default function LayoutSerieControl() {
                       Hojas
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                      {filterSerieControl[0].plegado === false
+                      {filterSerieControl[0]?.statusPlegado === true
                         ? "Listo"
                         : "Pendiente"}
                     </p>
@@ -281,7 +290,7 @@ export default function LayoutSerieControl() {
                       Pladur
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                      {filterSerieControl[0].pladur === false
+                      {filterSerieControl[0]?.statusPladur === true
                         ? "Listo"
                         : "Pendiente"}
                     </p>
@@ -296,7 +305,7 @@ export default function LayoutSerieControl() {
                       Rockbulk
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                      {filterSerieControl[0].rockbulk === false
+                      {filterSerieControl[0]?.statusRockbulk === true
                         ? "Listo"
                         : "Pendiente"}
                     </p>
@@ -311,7 +320,7 @@ export default function LayoutSerieControl() {
                       Pegamento
                     </label>
                     <p className="w-full bg-slate-300 text-center p-2 mt-2 text-black text-md md:text-xl font-semibold">
-                      {filterSerieControl[0].pegamento === false
+                      {filterSerieControl[0]?.statusPegamento === true
                         ? "Listo"
                         : "Pendiente"}
                     </p>

@@ -28,17 +28,25 @@ export default async function handler(req, res) {
         punzonado: req.body.punzonado,
         pegamento: req.body.pegamento,
         priority: req.body.priority,
+        statusGuillotina: req.body.statusGuillotina,
+        statusDevanado: req.body.statusDevanado,
+        statusMarcos: req.body.statusMarcos,
+        statusPlegado: req.body.statusPlegado,
+        statusPladur: req.body.statusPladur,
+        statusRockbulk: req.body.statusRockbulk,
+        statusPunzonado: req.body.statusPunzonado,
+        statusPegamento: req.body.statusPegamento,
       },
     });
 
     res.status(200).json(seriex);
   }
-  
-// ---------------------Editar-----------------------------
+
+  // ---------------------Editar-----------------------------
   if (req.method === "PUT") {
     const {
       id,
-      client,
+      // client,
       comment,
       day,
       hour,
@@ -52,13 +60,21 @@ export default async function handler(req, res) {
       punzonado,
       pegamento,
       priority,
+      statusGuillotina,
+      statusDevanado,
+      statusPunzonado,
+      statusMarcos,
+      statusPlegado,
+      statusPladur,
+      statusRockbulk,
+      statusPegamento,
     } = req.body;
 
     try {
       const updatedData = await prisma.serie.update({
         where: { id },
         data: {
-          client,
+          // client,
           comment,
           day,
           hour,
@@ -72,6 +88,14 @@ export default async function handler(req, res) {
           punzonado,
           pegamento,
           priority,
+          statusGuillotina,
+          statusDevanado,
+          statusPunzonado,
+          statusMarcos,
+          statusPlegado,
+          statusPladur,
+          statusRockbulk,
+          statusPegamento,
         },
       });
       res.status(200).json(updatedData);
@@ -81,8 +105,4 @@ export default async function handler(req, res) {
   } else {
     res.status(405).json({ error: "Método no permitido" });
   }
-
 }
-
-
-
