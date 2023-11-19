@@ -508,8 +508,6 @@ const obtainTime = () => {
             },
             body: JSON.stringify({
                 id: previewChangeId,
-                day: day,
-                hour: hour,
                 statusGuillotina: statusGuillotina,
                 statusDevanado: statusDevanado,
                 statusPunzonado: statusPunzonado,

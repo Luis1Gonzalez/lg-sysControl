@@ -46,10 +46,7 @@ export default async function handler(req, res) {
   if (req.method === "PUT") {
     const {
       id,
-      // client,
       comment,
-      day,
-      hour,
       status,
       guillotina,
       devanado,
@@ -74,10 +71,7 @@ export default async function handler(req, res) {
       const updatedData = await prisma.serie.update({
         where: { id },
         data: {
-          // client,
           comment,
-          day,
-          hour,
           status,
           guillotina,
           devanado,
